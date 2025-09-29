@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqatv0gpshsbb"]
+
+[ext_resource type="Script" uid="uid://bcshruf58gvem" path="res://splash_screen.gd" id="1_el3v4"]
+[ext_resource type="Texture2D" uid="uid://cstv2haj6cpc8" path="res://splash.png" id="1_ty3ja"]
+
+[sub_resource type="Animation" id="Animation_el3v4"]
+resource_name = "fade"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Image:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 2),
+"transitions": PackedFloat32Array(0.5, 0.5, 2),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_arguk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Image:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_74eti"]
+_data = {
+&"RESET": SubResource("Animation_arguk"),
+&"fade": SubResource("Animation_el3v4")
+}
+
+[node name="SplashScreen" type="Node2D"]
+script = ExtResource("1_el3v4")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(48.261375, 27.333256)
+color = Color(0.972549, 0.972549, 0.972549, 1)
+
+[node name="Image" type="Sprite2D" parent="."]
+position = Vector2(970, 520)
+texture = ExtResource("1_ty3ja")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_74eti")
+}
+autoplay = "fade"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

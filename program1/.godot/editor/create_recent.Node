@@ -1,0 +1,14 @@
+Label
+Timer
+ColorRect
+Node2D
+AnimationPlayer
+Sprite2D
+TextureRect
+CenterContainer
+Control
+CanvasLayer
+PathFollow2D
+Path2D
+ProgressBar
+CollisionShape2D

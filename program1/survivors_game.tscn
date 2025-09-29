@@ -1,0 +1,217 @@
+[gd_scene load_steps=6 format=3 uid="uid://swcb8q32cvqi"]
+
+[ext_resource type="Script" uid="uid://c1bfau31nfqio" path="res://survivors_game.gd" id="1_l26od"]
+[ext_resource type="PackedScene" uid="uid://c1sx7bic4uhdj" path="res://player.tscn" id="1_y3pti"]
+[ext_resource type="PackedScene" uid="uid://dq3r015sr1uql" path="res://pine_tree.tscn" id="2_l26od"]
+[ext_resource type="Script" uid="uid://cf24565rg3qa" path="res://pause.gd" id="4_qqaft"]
+
+[sub_resource type="Curve2D" id="Curve2D_qqaft"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -141.82733, -119, 0, 0, 0, 0, 2060.0288, -117.01851, 0, 0, 0, 0, 2062, 1166, 0, 0, 0, 0, -133.94244, 1166.9907, 0, 0, 0, 0, -141.82733, -119)
+}
+point_count = 5
+
+[node name="Game" type="Node2D"]
+process_mode = 1
+y_sort_enabled = true
+script = ExtResource("1_l26od")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -10
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_left = -10.0
+offset_top = -15.0
+offset_right = 1950.0
+offset_bottom = 1096.0
+color = Color(0.972549, 0.972549, 0.972549, 1)
+
+[node name="Countdown" type="Timer" parent="CanvasLayer"]
+unique_name_in_owner = true
+wait_time = 5.0
+one_shot = true
+
+[node name="CountdownLabel" type="Label" parent="CanvasLayer/Countdown"]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
+
+[node name="Player" parent="." instance=ExtResource("1_y3pti")]
+position = Vector2(958, 526)
+
+[node name="Path2D" type="Path2D" parent="Player"]
+position = Vector2(-1646.835, -894.8134)
+scale = Vector2(1.6909953, 1.6822288)
+curve = SubResource("Curve2D_qqaft")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D"]
+unique_name_in_owner = true
+position = Vector2(-141.82733, -119)
+rotation = 0.0008999182
+
+[node name="SpawnTime" type="Timer" parent="."]
+autostart = true
+
+[node name="GameOver" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="GameOver"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5137255)
+
+[node name="Label" type="Label" parent="GameOver/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = -11.5
+offset_right = 43.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 156
+text = "Game Over"
+
+[node name="Pause" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+script = ExtResource("4_qqaft")
+
+[node name="ColorRect" type="ColorRect" parent="Pause"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5137255)
+
+[node name="Label" type="Label" parent="Pause/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = -11.5
+offset_right = 43.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 156
+text = "Paused"
+
+[node name="Win" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Win"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5137255)
+
+[node name="Label" type="Label" parent="Win/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = -11.5
+offset_right = 43.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 156
+text = "You Win!"
+
+[node name="PineTree" parent="." instance=ExtResource("2_l26od")]
+position = Vector2(1353, 267)
+
+[node name="PineTree2" parent="." instance=ExtResource("2_l26od")]
+position = Vector2(1271, 493)
+
+[node name="PineTree3" parent="." instance=ExtResource("2_l26od")]
+position = Vector2(1402, 470)
+
+[node name="PineTree4" parent="." instance=ExtResource("2_l26od")]
+position = Vector2(1394, 688)
+
+[node name="PineTree5" parent="." instance=ExtResource("2_l26od")]
+position = Vector2(749, 762)
+
+[node name="PineTree6" parent="." instance=ExtResource("2_l26od")]
+position = Vector2(518, 450)
+
+[node name="PineTree7" parent="." instance=ExtResource("2_l26od")]
+position = Vector2(757, 360)
+
+[node name="PineTree8" parent="." instance=ExtResource("2_l26od")]
+position = Vector2(1141, 774)
+
+[node name="PineTree9" parent="." instance=ExtResource("2_l26od")]
+position = Vector2(174, 151)
+
+[node name="PineTree10" parent="." instance=ExtResource("2_l26od")]
+position = Vector2(169, 851)
+
+[node name="PineTree11" parent="." instance=ExtResource("2_l26od")]
+position = Vector2(1752, 78)
+
+[node name="PineTree12" parent="." instance=ExtResource("2_l26od")]
+position = Vector2(1622, 889)
+
+[node name="PineTree13" parent="." instance=ExtResource("2_l26od")]
+position = Vector2(495, 1252)
+
+[node name="PineTree14" parent="." instance=ExtResource("2_l26od")]
+position = Vector2(1101, 1157)
+
+[node name="PineTree15" parent="." instance=ExtResource("2_l26od")]
+position = Vector2(-241, 773)
+
+[node name="PineTree16" parent="." instance=ExtResource("2_l26od")]
+position = Vector2(-305, 351)
+
+[node name="PineTree17" parent="." instance=ExtResource("2_l26od")]
+position = Vector2(391, -198)
+
+[node name="PineTree18" parent="." instance=ExtResource("2_l26od")]
+position = Vector2(1058, -76)
+
+[node name="PineTree19" parent="." instance=ExtResource("2_l26od")]
+position = Vector2(1834, -231)
+
+[node name="PineTree20" parent="." instance=ExtResource("2_l26od")]
+position = Vector2(2242, 125)
+
+[node name="PineTree21" parent="." instance=ExtResource("2_l26od")]
+position = Vector2(2157, 674)
+
+[node name="PineTree22" parent="." instance=ExtResource("2_l26od")]
+position = Vector2(2263, 1205)
+
+[connection signal="timeout" from="CanvasLayer/Countdown" to="." method="_on_countdown_timeout"]
+[connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
+[connection signal="timeout" from="SpawnTime" to="." method="_on_timer_timeout"]
